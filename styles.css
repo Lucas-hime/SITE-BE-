@@ -280,15 +280,6 @@ p {
   justify-content: space-between;
 }
 
-
-.menu-overlay[hidden] {
-  display: none;
-}
-
-section[id] {
-  scroll-margin-top: 96px;
-}
-
 .menu-overlay nav {
   display: grid;
 }

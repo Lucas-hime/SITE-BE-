@@ -10,12 +10,6 @@ const handleHeaderState = () => {
 handleHeaderState();
 window.addEventListener('scroll', handleHeaderState, { passive: true });
 
-
-if (menuOverlay) {
-  menuOverlay.hidden = true;
-  document.body.style.overflow = '';
-}
-
 if (menuToggle && menuOverlay) {
   menuToggle.addEventListener('click', () => {
     const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
