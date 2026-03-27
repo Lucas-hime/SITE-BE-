@@ -356,6 +356,43 @@ section[id] {
   max-width: 8.8ch;
 }
 
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-copy .eyebrow,
+.hero-copy h1,
+.hero-copy .hero-subtitle,
+.hero-copy .hero-support,
+.hero-copy .hero-actions,
+.hero-copy .hero-meta {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.hero-copy .eyebrow,
+.hero-copy h1 {
+  animation-delay: 0.1s;
+}
+
+.hero-copy .hero-subtitle {
+  animation-delay: 0.2s;
+}
+
+.hero-copy .hero-support,
+.hero-copy .hero-actions,
+.hero-copy .hero-meta {
+  animation-delay: 0.3s;
+}
+
 .hero-subtitle {
   color: rgba(255, 255, 255, 0.65);
   font-weight: 300;
