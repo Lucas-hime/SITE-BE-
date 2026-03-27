@@ -200,12 +200,13 @@ p {
 
 .brand-sub {
   display: block;
-  margin-top: 6px;
+  margin-top: 3px;
   color: var(--gold);
   font-size: 0.67rem;
   text-transform: uppercase;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.16em;
   font-weight: 300;
+  white-space: nowrap;
 }
 
 .desktop-nav {
@@ -349,6 +350,12 @@ section[id] {
   gap: 24px;
 }
 
+
+
+.hero-copy h1 {
+  max-width: 8.8ch;
+}
+
 .hero-subtitle {
   color: rgba(255, 255, 255, 0.65);
   font-weight: 300;
@@ -393,7 +400,7 @@ section[id] {
 .hero-image {
   display: none;
   position: relative;
-  align-items: end;
+  align-items: center;
   justify-content: center;
 }
 
@@ -407,7 +414,7 @@ section[id] {
 }
 
 .hero-image img {
-  width: min(90%, 400px);
+  width: min(86%, 390px);
   margin-inline: auto;
 }
 
@@ -1020,7 +1027,7 @@ section[id] {
 
   .hero-layout {
     grid-template-columns: 55% 45%;
-    align-items: end;
+    align-items: center;
   }
 
   .hero-image {
