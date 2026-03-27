@@ -677,7 +677,6 @@ section[id] {
   position: relative;
   z-index: 1;
   font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
   color: rgba(255, 255, 255, 0.85);
   font-size: 1.15rem;
   line-height: 1.8;
@@ -766,6 +765,11 @@ section[id] {
   color: var(--gold);
   text-decoration: none;
 }
+
+.horarios { margin-top: 1.5rem; }
+.horarios p { margin: 0.2rem 0; font-size: 0.9rem; }
+.horarios-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #b8a06a; margin-bottom: 0.5rem; }
+.horarios-note { font-size: 0.8rem; opacity: 0.7; margin-top: 0.5rem; }
 
 .contact-form {
   background: var(--white);

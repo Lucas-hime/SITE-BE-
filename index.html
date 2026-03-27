@@ -15,6 +15,35 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "Dr. Bernardo Hime",
+  "medicalSpecialty": "Cirurgia Vascular",
+  "identifier": "CRM SP 192561",
+  "telephone": "+5511968441731",
+  "email": "vascular@bernardohime.com",
+  "url": "https://lucas-hime.github.io/SITE-BE-/",
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua José Jannarelli, 199, conj. 172/173",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Miruna, 755",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    }
+  ]
+}
+</script>
   </head>
   <body>
     <header class="site-header" id="topo">
@@ -67,7 +96,7 @@
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="https://wa.me/5511968441731" target="_blank" rel="noopener">Falar com especialista</a>
-              <a class="btn btn-secondary" href="#tratamentos">Ver tratamentos</a>
+              <a href="#tratamentos" style="color:#b8a06a;font-size:0.9rem;text-decoration:none;display:inline-block;margin-top:0.5rem;border-bottom:1px solid #b8a06a;">Ver tratamentos</a>
             </div>
             <ul class="hero-meta">
               <li>CRM SP 192561</li>
@@ -264,6 +293,11 @@
                   <a href="https://waze.com/ul?q=Av+Miruna+755+Moema+São+Paulo+SP" target="_blank" rel="noopener">Abrir no Waze ↗</a>
                 </p>
               </article>
+              <div class="horarios">
+                <p class="horarios-label">Horários de atendimento</p>
+                <p>Segunda a sexta: 8h às 18h</p>
+                <p class="horarios-note">Agendamentos pelo WhatsApp também fora do horário comercial.</p>
+              </div>
             </div>
           </div>
 
@@ -280,17 +314,15 @@
 
             <label for="motivo">Motivo da consulta</label>
             <select id="motivo" name="motivo" required>
-              <option value="">Selecione</option>
-              <option>Varizes / Vasinhos</option>
-              <option>Trombose Venosa Profunda</option>
-              <option>Aneurisma</option>
-              <option>Check-up Vascular</option>
-              <option>DAOP</option>
-              <option>Pé Diabético</option>
-              <option>Linfedema</option>
-              <option>Cateter / Hemodiálise</option>
-              <option>Portocath</option>
-              <option>Outro</option>
+              <option value="">Selecione o motivo</option>
+              <option value="varizes">Varizes ou vasinhos</option>
+              <option value="trombose">Trombose venosa profunda</option>
+              <option value="aneurisma">Aneurisma</option>
+              <option value="arterial">Doença arterial periférica</option>
+              <option value="endovascular">Cirurgia endovascular</option>
+              <option value="checkup">Check-up vascular</option>
+              <option value="pe-diabetico">Pé diabético</option>
+              <option value="outro">Outro</option>
             </select>
 
             <label for="mensagem">Mensagem</label>
