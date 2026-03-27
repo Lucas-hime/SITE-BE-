@@ -105,6 +105,7 @@ contactForm?.addEventListener('submit', async (event) => {
 
   const formEndpoint = (form.dataset.formEndpoint || form.getAttribute('action') || '').trim();
   const hasValidEndpoint = Boolean(formEndpoint) && !/your-id/i.test(formEndpoint);
+  delete form.dataset.nativeSubmitted;
 
   const submitButton = form.querySelector('button[type="submit"]');
   const originalLabel = submitButton?.textContent || '';
@@ -177,6 +178,12 @@ contactForm?.addEventListener('submit', async (event) => {
       formFeedback.hidden = false;
     }
   } catch (error) {
+    if (hasValidEndpoint && !form.dataset.nativeSubmitted) {
+      form.dataset.nativeSubmitted = 'true';
+      HTMLFormElement.prototype.submit.call(form);
+      return;
+    }
+
     if (formFeedback) {
       formFeedback.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
       formFeedback.classList.add('is-error');
