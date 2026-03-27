@@ -418,6 +418,15 @@ section[id] {
   flex: 1 1 240px;
 }
 
+.hero-treatments-link {
+  color: #b8a06a;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 0.5rem;
+  border-bottom: 1px solid #b8a06a;
+}
+
 .hero-meta {
   list-style: none;
   margin: 0;
@@ -915,6 +924,11 @@ section[id] {
 
 .form-feedback.is-error {
   color: #9a3b3b;
+}
+
+.form-feedback a {
+  color: inherit;
+  text-decoration: underline;
 }
 
 .contact-form .btn:disabled {

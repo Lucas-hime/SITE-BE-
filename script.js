@@ -124,28 +124,9 @@ contactForm?.addEventListener('submit', async (event) => {
   if (!hasValidEndpoint) {
     event.preventDefault();
 
-    const nome = form.querySelector('[name="nome"]')?.value?.trim() || '';
-    const telefone = form.querySelector('[name="telefone"]')?.value?.trim() || '';
-    const email = form.querySelector('[name="email"]')?.value?.trim() || '';
-    const motivo = form.querySelector('[name="motivo"]')?.value?.trim() || '';
-    const mensagem = form.querySelector('[name="mensagem"]')?.value?.trim() || '';
-
-    const whatsappText = [
-      'Olá, gostaria de solicitar agendamento.',
-      nome ? `Nome: ${nome}` : '',
-      telefone ? `Telefone: ${telefone}` : '',
-      email ? `E-mail: ${email}` : '',
-      motivo ? `Motivo: ${motivo}` : '',
-      mensagem ? `Mensagem: ${mensagem}` : '',
-    ]
-      .filter(Boolean)
-      .join('\n');
-
-    window.open(`https://wa.me/5511968441731?text=${encodeURIComponent(whatsappText)}`, '_blank', 'noopener');
-
     if (formFeedback) {
-      formFeedback.textContent = 'Formulário encaminhado para o WhatsApp. Se preferir, finalize o contato na conversa aberta.';
-      formFeedback.classList.add('is-success');
+      formFeedback.innerHTML = 'Não foi possível enviar pelo formulário no momento. <a href="https://wa.me/5511968441731" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>.';
+      formFeedback.classList.add('is-error');
       formFeedback.hidden = false;
     }
 
@@ -179,6 +160,12 @@ contactForm?.addEventListener('submit', async (event) => {
     }
   } catch (error) {
     if (hasValidEndpoint && !form.dataset.nativeSubmitted) {
+      if (formFeedback) {
+        formFeedback.textContent = 'Falha no envio automático. Tentando envio alternativo...';
+        formFeedback.classList.add('is-error');
+        formFeedback.hidden = false;
+      }
+
       form.dataset.nativeSubmitted = 'true';
       HTMLFormElement.prototype.submit.call(form);
       return;
