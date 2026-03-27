@@ -849,6 +849,27 @@ section[id] {
   width: 100%;
 }
 
+
+.form-feedback {
+  margin-top: 14px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.form-feedback.is-success {
+  color: #2f6b46;
+}
+
+.form-feedback.is-error {
+  color: #9a3b3b;
+}
+
+.contact-form .btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .site-footer {
   background: var(--dark);
   padding: 64px 0 32px;
@@ -943,7 +964,7 @@ section[id] {
   fill: var(--white);
 }
 
-body.reveal-ready .reveal {
+.reveal.reveal-init {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;

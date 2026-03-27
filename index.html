@@ -267,7 +267,7 @@
             </div>
           </div>
 
-          <form class="contact-form reveal" data-delay="0.1" action="#" method="post">
+          <form class="contact-form reveal" data-delay="0.1" action="" data-form-endpoint="" method="POST">
             <h3>Solicitar agendamento</h3>
             <label for="nome">Nome</label>
             <input id="nome" name="nome" type="text" required />
@@ -297,11 +297,12 @@
             <textarea id="mensagem" name="mensagem" minlength="3" required></textarea>
 
             <label class="checkbox-wrap" for="lgpd">
-              <input id="lgpd" type="checkbox" required />
+              <input id="lgpd" name="lgpd" type="checkbox" value="Autorizado" required />
               <span>Autorizo o uso dos meus dados para contato, conforme a política de privacidade.</span>
             </label>
 
             <button class="btn btn-primary" type="submit">Solicitar agendamento</button>
+            <p class="form-feedback" id="formFeedback" role="status" aria-live="polite" hidden></p>
           </form>
         </div>
       </section>
