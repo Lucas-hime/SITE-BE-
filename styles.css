@@ -964,7 +964,7 @@ section[id] {
   fill: var(--white);
 }
 
-body.reveal-ready .reveal {
+.reveal.reveal-init {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;

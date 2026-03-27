@@ -59,25 +59,41 @@ if (menuToggle && menuOverlay) {
 }
 
 const revealElements = document.querySelectorAll('.reveal');
-document.body.classList.add('reveal-ready');
 
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const delay = entry.target.dataset.delay || '0';
-        entry.target.style.transitionDelay = `${delay}s`;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.1 }
-  );
+const showAllRevealElements = () => {
+  revealElements.forEach((el) => {
+    el.classList.add('is-visible');
+    el.classList.remove('reveal-init');
+  });
+};
 
-  revealElements.forEach((el) => observer.observe(el));
-} else {
-  revealElements.forEach((el) => el.classList.add('is-visible'));
+if (revealElements.length > 0) {
+  try {
+    revealElements.forEach((el) => el.classList.add('reveal-init'));
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const delay = entry.target.dataset.delay || '0';
+            entry.target.style.transitionDelay = `${delay}s`;
+            entry.target.classList.add('is-visible');
+            entry.target.classList.remove('reveal-init');
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      revealElements.forEach((el) => observer.observe(el));
+      window.setTimeout(showAllRevealElements, 1600);
+    } else {
+      showAllRevealElements();
+    }
+  } catch (error) {
+    showAllRevealElements();
+  }
 }
 
 const contactForm = document.querySelector('.contact-form');
