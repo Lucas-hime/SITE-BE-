@@ -103,7 +103,8 @@ contactForm?.addEventListener('submit', async (event) => {
   const form = event.currentTarget;
   if (!form.checkValidity()) return;
 
-  event.preventDefault();
+  const formEndpoint = (form.dataset.formEndpoint || form.getAttribute('action') || '').trim();
+  const hasValidEndpoint = Boolean(formEndpoint) && !/your-id/i.test(formEndpoint);
 
   const submitButton = form.querySelector('button[type="submit"]');
   const originalLabel = submitButton?.textContent || '';
@@ -119,8 +120,46 @@ contactForm?.addEventListener('submit', async (event) => {
     formFeedback.classList.remove('is-success', 'is-error');
   }
 
+  if (!hasValidEndpoint) {
+    event.preventDefault();
+
+    const nome = form.querySelector('[name="nome"]')?.value?.trim() || '';
+    const telefone = form.querySelector('[name="telefone"]')?.value?.trim() || '';
+    const email = form.querySelector('[name="email"]')?.value?.trim() || '';
+    const motivo = form.querySelector('[name="motivo"]')?.value?.trim() || '';
+    const mensagem = form.querySelector('[name="mensagem"]')?.value?.trim() || '';
+
+    const whatsappText = [
+      'Olá, gostaria de solicitar agendamento.',
+      nome ? `Nome: ${nome}` : '',
+      telefone ? `Telefone: ${telefone}` : '',
+      email ? `E-mail: ${email}` : '',
+      motivo ? `Motivo: ${motivo}` : '',
+      mensagem ? `Mensagem: ${mensagem}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    window.open(`https://wa.me/5511968441731?text=${encodeURIComponent(whatsappText)}`, '_blank', 'noopener');
+
+    if (formFeedback) {
+      formFeedback.textContent = 'Formulário encaminhado para o WhatsApp. Se preferir, finalize o contato na conversa aberta.';
+      formFeedback.classList.add('is-success');
+      formFeedback.hidden = false;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = originalLabel;
+    }
+
+    return;
+  }
+
+  event.preventDefault();
+
   try {
-    const response = await fetch(form.action, {
+    const response = await fetch(formEndpoint, {
       method: 'POST',
       body: new FormData(form),
       headers: { Accept: 'application/json' },
