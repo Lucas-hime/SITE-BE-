@@ -141,10 +141,22 @@ contactForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   try {
+    const formData = new FormData(form);
+    const formEncoding = (form.enctype || '').toLowerCase();
+    const useMultipart = formEncoding.includes('multipart/form-data');
+    const requestBody = useMultipart ? formData : new URLSearchParams(formData);
+
+    const requestHeaders = useMultipart
+      ? { Accept: 'application/json' }
+      : {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        };
+
     const response = await fetch(formEndpoint, {
       method: 'POST',
-      body: new FormData(form),
-      headers: { Accept: 'application/json' },
+      body: requestBody,
+      headers: requestHeaders,
     });
 
     if (!response.ok) {
